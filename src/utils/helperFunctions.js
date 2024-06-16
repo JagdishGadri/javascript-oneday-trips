@@ -31,3 +31,58 @@ export const getColorByTileNumber = (tileNumber) => {
   }
   return color;
 };
+
+
+// function printMove(startRod,endRod){
+//   console.log( {
+//     source:startRod,
+//     destination:endRod
+//   }  )
+  
+// }
+
+// export function* solveTowerOfHanoi(numberOfTiles,startRod,endRod,otherRod,steps=[]){
+//   if(numberOfTiles===1){
+//     steps.push( printMove(startRod,endRod))
+//     return steps;
+//     }
+//   solveTowerOfHanoi(numberOfTiles-1,startRod,otherRod,endRod)
+//   steps.push(printMove(startRod,endRod))
+//   solveTowerOfHanoi(numberOfTiles-1,otherRod,endRod,startRod)
+//   return steps
+// }
+
+
+export class TowerOfHanoi {
+  constructor() {
+    this.steps = [];
+  }
+
+   printMove(fromRod, toRod) {
+    return {
+          source:fromRod,
+          destination:toRod
+        };
+  }
+  solve(numberOfTiles, startRod, endRod, otherRod) {
+    if (numberOfTiles === 1) {
+      this.steps.push(this.printMove(startRod, endRod));
+      return;
+    }
+    this.solve(numberOfTiles - 1, startRod, otherRod, endRod);
+    this.steps.push(this.printMove(startRod, endRod));
+    this.solve(numberOfTiles - 1, otherRod, endRod, startRod);
+  }
+
+  getSteps() {
+    return this.steps;
+  }
+
+  async *stepIterator(){
+    for(const step of this.steps){
+      yield step;
+      await new Promise((resolve)=>setTimeout(resolve,2000))
+    }
+  }
+
+}
