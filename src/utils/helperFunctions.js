@@ -32,13 +32,12 @@ export const getColorByTileNumber = (tileNumber) => {
   return color;
 };
 
-
 // function printMove(startRod,endRod){
 //   console.log( {
 //     source:startRod,
 //     destination:endRod
 //   }  )
-  
+
 // }
 
 // export function* solveTowerOfHanoi(numberOfTiles,startRod,endRod,otherRod,steps=[]){
@@ -52,22 +51,59 @@ export const getColorByTileNumber = (tileNumber) => {
 //   return steps
 // }
 
+// export class TowerOfHanoi {
+//   constructor(duration) {
+//     this.steps = [];
+//     this.duration = duration;
+//   }
 
+//   printMove(fromRod, toRod) {
+//     return {
+//       source: fromRod,
+//       destination: toRod,
+//     };
+//   }
+//   solve(numberOfTiles, startRod, endRod, otherRod) {
+//     console.log("numberOfTiles", numberOfTiles);
+//     if (numberOfTiles === 1) {
+//       return this.steps.push(this.printMove(startRod, endRod));
+//     }
+//     this.solve(numberOfTiles - 1, startRod, otherRod, endRod);
+//     this.steps.push(this.printMove(startRod, endRod));
+//     this.solve(numberOfTiles - 1, otherRod, endRod, startRod);
+//   }
+
+//   getSteps() {
+//     return this.steps;
+//   }
+
+//   async *stepIterator() {
+//     for (const step of this.steps) {
+//       yield step;
+//       await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
+//     }
+//   }
+// }
 export class TowerOfHanoi {
-  constructor() {
+  constructor(duration) {
     this.steps = [];
+    this.duration = duration;
   }
 
-   printMove(fromRod, toRod) {
-    return {
-          source:fromRod,
-          destination:toRod
-        };
+  setDuration(newDuration) {
+    this.duration = newDuration;
   }
+
+  printMove(fromRod, toRod) {
+    return {
+      source: fromRod,
+      destination: toRod,
+    };
+  }
+
   solve(numberOfTiles, startRod, endRod, otherRod) {
     if (numberOfTiles === 1) {
-      this.steps.push(this.printMove(startRod, endRod));
-      return;
+      return this.steps.push(this.printMove(startRod, endRod));
     }
     this.solve(numberOfTiles - 1, startRod, otherRod, endRod);
     this.steps.push(this.printMove(startRod, endRod));
@@ -78,11 +114,10 @@ export class TowerOfHanoi {
     return this.steps;
   }
 
-  async *stepIterator(){
-    for(const step of this.steps){
+  async *stepIterator() {
+    for (const step of this.steps) {
       yield step;
-      await new Promise((resolve)=>setTimeout(resolve,2000))
+      await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
     }
   }
-
 }
