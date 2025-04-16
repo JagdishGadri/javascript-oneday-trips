@@ -32,58 +32,6 @@ export const getColorByTileNumber = (tileNumber) => {
   return color;
 };
 
-// function printMove(startRod,endRod){
-//   console.log( {
-//     source:startRod,
-//     destination:endRod
-//   }  )
-
-// }
-
-// export function* solveTowerOfHanoi(numberOfTiles,startRod,endRod,otherRod,steps=[]){
-//   if(numberOfTiles===1){
-//     steps.push( printMove(startRod,endRod))
-//     return steps;
-//     }
-//   solveTowerOfHanoi(numberOfTiles-1,startRod,otherRod,endRod)
-//   steps.push(printMove(startRod,endRod))
-//   solveTowerOfHanoi(numberOfTiles-1,otherRod,endRod,startRod)
-//   return steps
-// }
-
-// export class TowerOfHanoi {
-//   constructor(duration) {
-//     this.steps = [];
-//     this.duration = duration;
-//   }
-
-//   printMove(fromRod, toRod) {
-//     return {
-//       source: fromRod,
-//       destination: toRod,
-//     };
-//   }
-//   solve(numberOfTiles, startRod, endRod, otherRod) {
-//     console.log("numberOfTiles", numberOfTiles);
-//     if (numberOfTiles === 1) {
-//       return this.steps.push(this.printMove(startRod, endRod));
-//     }
-//     this.solve(numberOfTiles - 1, startRod, otherRod, endRod);
-//     this.steps.push(this.printMove(startRod, endRod));
-//     this.solve(numberOfTiles - 1, otherRod, endRod, startRod);
-//   }
-
-//   getSteps() {
-//     return this.steps;
-//   }
-
-//   async *stepIterator() {
-//     for (const step of this.steps) {
-//       yield step;
-//       await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
-//     }
-//   }
-// }
 export class TowerOfHanoi {
   constructor(duration) {
     this.steps = [];
@@ -116,8 +64,39 @@ export class TowerOfHanoi {
 
   async *stepIterator() {
     for (const step of this.steps) {
+      console.log("send", step);
       yield step;
       await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
     }
   }
 }
+
+// export class TowerOfHanoi {
+//   constructor(duration) {
+//     this.duration = duration;
+//   }
+
+//   setDuration(newDuration) {
+//     this.duration = newDuration;
+//   }
+
+//   printMove(fromRod, toRod) {
+//     return {
+//       source: fromRod,
+//       destination: toRod,
+//     };
+//   }
+
+//   // Modified solve method that yields steps directly
+//   async *solve(numberOfTiles, startRod, endRod, otherRod) {
+//     if (numberOfTiles === 1) {
+//       yield this.printMove(startRod, endRod);
+//       await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
+//       return;
+//     }
+//     yield* this.solve(numberOfTiles - 1, startRod, otherRod, endRod);
+//     yield this.printMove(startRod, endRod);
+//     await new Promise((resolve) => setTimeout(resolve, this.duration ?? 200));
+//     yield* this.solve(numberOfTiles - 1, otherRod, endRod, startRod);
+//   }
+// }

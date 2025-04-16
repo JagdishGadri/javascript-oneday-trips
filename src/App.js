@@ -23,7 +23,6 @@ const App = () => {
   };
 
   const [tileNumbers, setTileNumbers] = useState(initializeTiles(numTiles));
-
   useEffect(() => {
     hanoi.setDuration(animationSpeed);
   }, [animationSpeed]);
@@ -59,13 +58,13 @@ const App = () => {
 
   const startAnimation = async () => {
     setIsAnimating(true);
-
     // Start the animation process and store it in the ref
     animationRef.current = (async () => {
       for await (const step of steps) {
         moveTileFromStartToEnd(step.source, step.destination);
       }
       setIsAnimating(false);
+      setCurrentStep(null);
     })();
   };
 
