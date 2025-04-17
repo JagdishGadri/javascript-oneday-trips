@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/javascript-oneday-trips/static/css/main.1df5a602.css",
+    "main.js": "/javascript-oneday-trips/static/js/main.1c1828d0.js",
+    "static/js/453.f1871234.chunk.js": "/javascript-oneday-trips/static/js/453.f1871234.chunk.js",
+    "index.html": "/javascript-oneday-trips/index.html",
+    "main.1df5a602.css.map": "/javascript-oneday-trips/static/css/main.1df5a602.css.map",
+    "main.1c1828d0.js.map": "/javascript-oneday-trips/static/js/main.1c1828d0.js.map",
+    "453.f1871234.chunk.js.map": "/javascript-oneday-trips/static/js/453.f1871234.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1df5a602.css",
+    "static/js/main.1c1828d0.js"
+  ]
+}
